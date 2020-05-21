@@ -1,15 +1,17 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from spider.dao.model import CountryCode, AreaCode, ExchangeCode
+import os
 
 
 class Dao(object):
 
     def __init__(self):
-        engine = create_engine("postgresql+psycopg2://postgres:postgres@127.0.0.1/pigeon", echo=True)
-        Session = sessionmaker()
-        Session.configure(bind=engine)
-        self.session = Session()
+        url = os.getenv('DATABASE_URL', 'postgresql+psycopg2://postgres:postgres@127.0.0.1/pigeon')
+        engine = create_engine(url, echo=True)
+        session = sessionmaker()
+        session.configure(bind=engine)
+        self.session = session()
 
     def get_country_by_code(self, code):
         return self.session.query(CountryCode).filter(CountryCode.country_code == code).first()

@@ -28,6 +28,7 @@ class AreaCodeSpider(CrawlSpider):
         return area_codes
 
     def parse_exchange_code_items(self, response):
+        print(response.url)
         ec = ExchangeCodeItem()
         information = response.xpath('//div[@id="allcontent"]/div/div[@class="panel panel-default cmpanel"][1]/div[@class="panel-body cmpanelbody"]').extract_first()
         names = ['type', 'carrier', 'city', 'state', 'county', 'zip_code', 'timezone']

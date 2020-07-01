@@ -7,10 +7,10 @@ import re
 class AreaCodeSpider(CrawlSpider):
     name = 'area'
     allowed_domains = ['www.phonenumberdata.net']
-    start_urls = ['http://www.phonenumberdata.net/']
+    start_urls = ['http://www.phonenumberdata.net/201-new_jersey-1.html']
     rules = [
-        Rule(LinkExtractor(allow=r'net/$'), callback='parse_area_code_items', follow=True),
-        Rule(LinkExtractor(allow=r'net/\d{3}-.*'), follow=True),
+        # Rule(LinkExtractor(allow=r'net/$'), callback='parse_area_code_items', follow=True),
+        # Rule(LinkExtractor(allow=r'net/\d{3}-.*'), follow=True),
         Rule(LinkExtractor(allow=r'[a-zA-Z_]+-\d{3}-\d{3}$', deny=r'result.*'), callback='parse_exchange_code_items', follow=True)
     ]
 

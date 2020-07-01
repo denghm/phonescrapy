@@ -35,7 +35,7 @@ class SpiderPipeline(object):
                     self.dao.save(country_code)
 
         if isinstance(item, ExchangeCodeItem):
-            e = self.dao.get_exchange_by_code(item['exchange_code'])
+            e = self.dao.get_exchange_by_code(item['full_exchange_code'])
             if not e:
                 exchange_code = ExchangeCode(exchange_code=item['exchange_code'],
                                              area_code_and_exchange_code=item['full_exchange_code'],

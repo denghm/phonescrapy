@@ -20,7 +20,7 @@ class Dao(object):
         return self.session.query(AreaCode).filter(AreaCode.area_code == code).first()
 
     def get_exchange_by_code(self, code):
-        return self.session.query(ExchangeCode).filter(ExchangeCode.exchange_code == code).first()
+        return self.session.query(ExchangeCode).filter(ExchangeCode.area_code_and_exchange_code == code).first()
 
     def save(self, obj):
         self.session.add(obj)
